@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SiswaController extends Controller
 {
@@ -12,7 +14,8 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        //
+        $user = User::where('role', '3')->get();
+        return view('dashboard.dataSiswa.index', compact('user'));
     }
 
     /**
@@ -20,7 +23,7 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.dataSiswa.create');
     }
 
     /**
@@ -28,7 +31,16 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'role' => $request->role,
+            'password' => bcrypt($request->password),
+            'bio' => $request->bio,
+            'image' => $request->hasFile('image') ? $request->file('image')->store('users') : null,
+        ]);
+
+        return redirect()->route('data_siswa.index')->with('Sukses', 'User Berhasil Ditambahkan');
     }
 
     /**
@@ -36,7 +48,8 @@ class SiswaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('dashboard.dataSiswa.show', compact('user'));
     }
 
     /**
@@ -44,7 +57,8 @@ class SiswaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('dashboard.dataSiswa.edit', compact('user'));
     }
 
     /**
@@ -52,14 +66,45 @@ class SiswaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'bio' => $request->bio,
+        ];
+
+        if ($request->filled('password')) {
+            $data['password'] = bcrypt($request->password);
+        } else {
+            $data['password'] = $user->password;
+        }
+
+        if ($request->hasFile('image')) {
+            if ($user->image && Storage::exists($user->image)) {
+                Storage::delete($user->image);
+            }
+            $data['image'] = $request->file('image')->store('users');
+        }
+
+        $user->update($data);
+
+        return redirect()->route('data_siswa.index')->with('Sukses', 'Data User Berhasil Di Update');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        if ($user->image && Storage::exists('public/' . $user->image)) {
+            Storage::delete('public/' . $user->image);
+        }
+
+        $user->delete();
+
+        return redirect()->back()->with('Delete', 'Berhasil menghapus user');
     }
 }

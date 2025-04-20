@@ -1,6 +1,6 @@
 @extends('template.index')
 
-@section('title', 'tambah materi video')
+@section('title', 'tambah data guru')
 
 @section('style')
 
@@ -59,46 +59,43 @@
             <div class="col-lg-12 col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Form materi video</h4>
+                        <h4 class="card-title">Form tambah user</h4>
                     </div>
                     <div class="card-body">
                         <div class="basic-form">
-                            <form action="{{ route('materi_pdf.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('data_guru.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <div class="form-row">
+                                <input type="hidden" class="form-control" name="role" value="2">
+                                <div class="image-placeholder">
+                                    <div class="avatar-edit">
+                                        <input type="file" name="image" id="imageUpload" accept=".png, .jpg, .jpeg">
+                                        <label for="imageUpload"></label>
+                                    </div>
+                                    <div class="avatar-preview">
+                                        <div id="imagePreview" style="background-image: url('{{ asset('images/contacts/user.jpg') }}');">
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="form-row mt-5">
                                     <div class="form-group col-md-6">
-                                        <label for="judul" class="form-label">Judul</label>
-                                        <input type="text" name="judul" id="judul" class="form-control" required>
+                                        <label>Name</label>
+                                        <input type="text" class="form-control" name="name" placeholder="name">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="file" class="form-label">Pdf File</label>
-                                        <input type="file" name="file_url" id="file" class="form-control" required>
+                                        <label>Email</label>
+                                        <input type="email" name="email" class="form-control" placeholder="Email">
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="jenjang" class="form-label">Jenjang</label>
-                                        <select name="jenjang_id" id="jenjang" class="form-control">
-                                            <option value="">-- Pilih Jenjang --</option>
-                                            @foreach($jenjangs as $jenjang)
-                                                <option value="{{ $jenjang->id }}">{{ $jenjang->nama }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    
-                                    <div class="form-group col-md-6">
-                                        <label for="kelas" class="form-label">Kelas</label>
-                                        <select name="kelas_id" id="kelas" class="form-control">
-                                            <option value="">-- Pilih Kelas --</option>
-                                            {{-- Nanti akan diisi lewat AJAX --}}
-                                        </select>
-                                    </div>
-                                    
                                     <div class="form-group col-lg-12">
-                                        <label for="deskripsi">Deskripsi</label>
-                                        <input type="text" name="deskripsi" class="form-control">
+                                        <label>Password</label>
+                                        <input type="password" name="password" class="form-control" placeholder="Password">
+                                    </div>
+                                    <div class="form-group col-lg-12">
+                                        <label>bio</label>
+                                        <input type="text" name="bio" name="bio" class="form-control">
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Tambah</button>
-                            </form>                            
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -110,28 +107,4 @@
 
 @section('script')
 <script src="{{ asset('js/dashboard/contact.js') }}"></script>
-
-<script>
-    document.getElementById('jenjang').addEventListener('change', function () {
-        const jenjangId = this.value;
-
-        // Menambahkan prefix 'A' pada URL
-        fetch(`/get-kelas/${jenjangId}`)
-            .then(response => response.json())
-            .then(data => {
-                const kelasSelect = document.getElementById('kelas');
-                kelasSelect.innerHTML = '<option value="">-- Pilih Kelas --</option>';
-
-                // Menambahkan kelas berdasarkan data yang diterima
-                data.forEach(kelas => {
-                    const option = document.createElement('option');
-                    option.value = kelas.id;
-                    option.text = kelas.nama;
-                    kelasSelect.appendChild(option);
-                });
-            })
-            .catch(error => console.log('Error:', error)); // Menangani error
-    });
-</script>
-
 @endsection

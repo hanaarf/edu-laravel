@@ -116,7 +116,7 @@
         const jenjangId = this.value;
 
         // Menambahkan prefix 'A' pada URL
-        fetch(`/A/get-kelas/${jenjangId}`)
+        fetch(`/get-kelas/${jenjangId}`)
             .then(response => response.json())
             .then(data => {
                 const kelasSelect = document.getElementById('kelas');
