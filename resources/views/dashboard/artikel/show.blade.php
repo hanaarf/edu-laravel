@@ -1,6 +1,6 @@
 @extends('template.index')
 
-@section('title', 'detail video')
+@section('title', 'detail artikel')
 
 @section('style')
 <link href="{{ asset('vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
@@ -28,13 +28,13 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Detail Video</h4>
+                        <h4 class="card-title">Detail artikel</h4>
                     </div>
                     <div class="card-body">
-                        <h5><strong>Judul:</strong> {{ $materi_pdf->judul }}</h5>
-                        <p><strong>Deskripsi:</strong> {{ $materi_pdf->deskripsi }}</p>
-                        
-                       
+                        <img src="{{ asset('storage/' . $artikel->cover_image) }}" alt="" width="200"
+                                                height="200"><br>
+                        <br><h5><strong>Judul:</strong> {{ $artikel->judul }}</h5>
+                        <p><strong>Deskripsi:</strong> {{ $artikel->deskripsi }}</p>
                     </div>
                 </div>
             </div>

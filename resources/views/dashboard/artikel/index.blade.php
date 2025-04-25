@@ -1,6 +1,6 @@
 @extends('template.index')
 
-@section('title', 'data guru')
+@section('title', 'data artikel')
 
 @section('style')
 <link href="{{ asset('vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
@@ -60,9 +60,9 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="{{ route('data_guru.create')}}" class="btn btn-rounded btn-outline-primary">+ data
-                            guru</a>
-                        <h4 class="card-title">Data guru</h4>
+                        <a href="{{ route('artikel.create')}}" class="btn btn-rounded btn-outline-primary">+ data
+                            artikel</a>
+                        <h4 class="card-title">Data artikel</h4>
                     </div>
                     <div class="card-body">
 
@@ -95,18 +95,17 @@
                                     <tr>
                                         <th></th>
                                         <th width="5%">No</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
+                                        <th>Judul</th>
+                                        <th>Deskripsi</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($user as $row)
+                                    @foreach ($artikel as $row)
                                     <tr>
                                         <td>
-                                            @if($row->image)
-                                            <img src="{{ asset('storage/' . $row->image) }}" alt="" width="35"
-                                                height="35" class="rounded-circle">
+                                            @if($row->cover_image)
+                                            <img src="{{ asset('storage/' . $row->cover_image) }}" alt="" width="35" height="35" class="rounded-circle">
                                             @else
                                             <img class="rounded-circle" width="35"
                                                 src="https://ui-avatars.com/api/?name={{ urlencode($row->name) }}"
@@ -114,20 +113,19 @@
                                             @endif
                                         </td>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $row->name }}</td>
-                                        <td><a href="javascript:void(0);"><strong><span class="__cf_email__"
-                                                        data-cfemail="98f1f6fef7d8fde0f9f5e8f4fdb6fbf7f5">{{ $row->email }}</span></strong></a>
-                                        </td>
+                                        <td>{{ $row->judul }}</td>
+                                        <td>{{ $row->deskripsi }}</td>
                                         <td>
                                             <div class="d-flex">
-                                                <a href="{{ route('data_guru.edit', $row->id) }}" class="btn btn-primary shadow btn-xs sharp mr-1"><i
+                                                <a href="{{ route('artikel.show', $row) }}" class="btn btn-info shadow btn-xs sharp mr-1"> <i class="fa fa-eye"></i></a>
+                                                <a href="{{ route('artikel.edit', $row->id) }}" class="btn btn-primary shadow btn-xs sharp mr-1"><i
                                                         class="fa fa-pencil"></i></a>
 
                                                 <a href="#" onclick="confirmDelete({{ $row->id }})"
                                                     class="btn btn-danger shadow btn-xs sharp">
                                                     <i class="fa fa-trash"></i>
                                                 </a>
-                                                <form id="delete-form-{{ $row->id }}" action="{{ route('data_guru.destroy', $row->id) }}" method="POST" style="display: none;">
+                                                <form id="delete-form-{{ $row->id }}" action="{{ route('artikel.destroy', $row->id) }}" method="POST" style="display: none;">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>                                                

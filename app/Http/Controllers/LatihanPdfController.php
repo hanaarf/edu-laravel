@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class LatihanPdfController extends Controller
 {
- /**
+    /**
      * Display a listing of the resource.
      */
     public function index()
@@ -81,6 +81,8 @@ class LatihanPdfController extends Controller
             'opsi_d.*' => 'required|string',
             'jawaban' => 'required|array',
             'jawaban.*' => 'required|in:A,B,C,D',
+            'xp' => 'required|array',
+            'xp.*' => 'required|numeric|min:0',
         ]);
 
         $materi_pdf_id = $request->materi_pdf_id;
@@ -95,6 +97,7 @@ class LatihanPdfController extends Controller
                 'opsi_c' => $request->opsi_c[$key],
                 'opsi_d' => $request->opsi_d[$key],
                 'jawaban' => $request->jawaban[$key],
+                'xp' => $request->xp[$key],
             ]);
         }
 
@@ -133,6 +136,7 @@ class LatihanPdfController extends Controller
             'opsi_c' => 'required|string',
             'opsi_d' => 'required|string',
             'jawaban' => 'required|string',
+            'xp' => 'required|numeric|min:0',
         ]);
 
         $latihan_pdf->update($validated);

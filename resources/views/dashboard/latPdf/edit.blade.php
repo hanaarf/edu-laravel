@@ -77,6 +77,11 @@
                                     </select>
                                 </div>
 
+                                <div class="form-group col-lg-12 mt-3">
+                                    <label for="xp">Nilai XP</label>
+                                    <input type="number" name="xp[]" class="form-control" value="{{ $latihan_video->xp }} placeholder="Masukkan nilai XP" required>
+                                </div> 
+
                                 <button type="submit" class="btn btn-primary mt-4">Update Materi</button>
                             </form>
                         </div>

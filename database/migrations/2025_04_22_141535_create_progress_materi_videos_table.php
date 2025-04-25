@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('siswa_profiles', function (Blueprint $table) {
+        Schema::create('progress_materi_videos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('jenjang_id')->constrained('jenjang')->onDelete('cascade');
-            $table->foreignId('kelas_id')->constrained('kelas')->onDelete('cascade');
-            $table->integer('xp_total')->default(0);
-            $table->integer('belajar_menit_per_hari')->default(0);
+            $table->foreignId('materivideo_id')->constrained('materi_videos')->onDelete('cascade');
+            $table->enum('status', ['belum selesai', 'selesai']);
+            $table->timestamp('waktu_selesai')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('siswa_profiles');
+        Schema::dropIfExists('progress_materi_videos');
     }
 };

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('opsi_c');
             $table->string('opsi_d');
             $table->string('jawaban');
+            $table->integer('xp')->default(0);
             $table->timestamps();
         });
     }

@@ -22,4 +22,14 @@ class Jenjang extends Model
     {
         return $this->hasMany(SiswaProfile::class);
     }
+
+    public function materiPdf()
+    {
+        return $this->hasMany(MateriPdf::class);
+    }
+
+    public function materiVideo()
+    {
+        return $this->hasMany(MateriVideo::class);
+    }
 }

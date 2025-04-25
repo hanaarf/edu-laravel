@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,6 +35,14 @@ class LoginController extends Controller
         }
 
         return '/login';
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        if ($user->role == '3') {
+            Auth::logout();
+            return redirect('/login')->with('error', 'Anda tidak memiliki akses.');
+        }
     }
 
     /**

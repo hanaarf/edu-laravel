@@ -16,7 +16,8 @@ class LatihanVideo extends Model
         'opsi_b',
         'opsi_c',
         'opsi_d',
-        'jawaban'
+        'jawaban',
+        'xp'
     ];
 
     public function materiVideo()

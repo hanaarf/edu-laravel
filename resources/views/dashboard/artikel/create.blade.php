@@ -1,6 +1,6 @@
 @extends('template.index')
 
-@section('title', 'edit data admin')
+@section('title', 'tambah data artikel')
 
 @section('style')
 
@@ -59,43 +59,34 @@
             <div class="col-lg-12 col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Form edit user</h4>
+                        <h4 class="card-title">Form tambah artikel</h4>
                     </div>
                     <div class="card-body">
                         <div class="basic-form">
-                            <form action="{{ route('data_admin.update', $user->id) }}" method="post" enctype="multipart/form-data" data-parsley-validate>
+                            <form action="{{ route('artikel.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                @method('PUT')
+                                <input type="hidden" class="form-control" name="role" value="1">
                                 <div class="image-placeholder">
                                     <div class="avatar-edit">
-                                        <input type="file" name="image" id="imageUpload" accept=".png, .jpg, .jpeg">
+                                        <input type="file" name="cover_image" id="imageUpload" accept=".png, .jpg, .jpeg">
                                         <label for="imageUpload"></label>
                                     </div>
                                     <div class="avatar-preview">
-                                        <div id="imagePreview" 
-                                             style="background-image: url('{{ $user->image ? asset('storage/' . $user->image) : asset('images/contacts/user.jpg') }}');">
+                                        <div id="imagePreview" style="background-image: url('{{ asset('images/contacts/user.jpg') }}');">
                                         </div>
-                                    </div>                                    
+                                    </div>
                                 </div> 
                                 <div class="form-row mt-5">
-                                    <div class="form-group col-md-6">
-                                        <label>Name</label>
-                                        <input type="text" class="form-control" name="name" value="{{ $user->name }}">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label>Email</label>
-                                        <input type="email" name="email" class="form-control" placeholder="Email" value="{{ $user->email }}">
+                                    <div class="form-group col-lg-12">
+                                        <label>judul</label>
+                                        <input type="text" class="form-control" name="judul" placeholder="name">
                                     </div>
                                     <div class="form-group col-lg-12">
-                                        <label>Password</label>
-                                        <input type="password" name="password" class="form-control" placeholder="Password">
-                                    </div>
-                                    <div class="form-group col-lg-12">
-                                        <label>bio</label>
-                                        <input type="text" name="bio" class="form-control" value="{{ $user->bio }}">
+                                        <label>deskripsi</label>
+                                        <textarea type="text" name="deskripsi" class="form-control"></textarea>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Ubah</button>
+                                <button type="submit" class="btn btn-primary">Tambah</button>
                             </form>
                         </div>
                     </div>

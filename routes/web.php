@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ArtikelController;
 use App\Http\Controllers\Admin\BaseController;
 use App\Http\Controllers\Admin\GuruController;
 use App\Http\Controllers\Admin\JenjangController;
@@ -34,6 +35,7 @@ Route::prefix('A')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::resource('data_admin', AdminController::class);
     Route::resource('data_guru', GuruController::class);
     Route::resource('data_siswa', SiswaController::class);
+    Route::resource('artikel', ArtikelController::class);
 });
 
 Route::middleware('auth')->group(function () {

@@ -15,6 +15,7 @@ class SiswaProfile extends Model
         'user_id',
         'jenjang_id',
         'kelas_id',
+        'xp_total',
         'belajar_menit_per_hari',
     ];
 

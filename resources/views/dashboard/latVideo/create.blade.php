@@ -136,6 +136,10 @@
                                                 <option value="D">Opsi D</option>
                                             </select>
                                         </div>
+                                        <div class="form-group col-lg-12 mt-3">
+                                            <label for="xp">Nilai XP</label>
+                                            <input type="number" name="xp[]" class="form-control" placeholder="Masukkan nilai XP" required>
+                                        </div>  
                                     </div>
                             
                                     <!-- Button untuk tambah soal -->
@@ -177,6 +181,10 @@
                                             <option value="D">Opsi D</option>
                                         </select>
                                     </div>
+                                    <div class="form-group col-lg-12 mt-3">
+                                        <label for="xp">Nilai XP</label>
+                                        <input type="number" name="xp[]" class="form-control" placeholder="Masukkan nilai XP" required>
+                                    </div>    
                                 </div>
                             </template>
                                                      

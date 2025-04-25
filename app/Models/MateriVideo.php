@@ -24,4 +24,14 @@ class MateriVideo extends Model
     {
         return $this->belongsTo(Kelas::class);
     }
+
+    public function latihanVideo()
+    {
+        return $this->hasMany(LatihanVideo::class);
+    }
+
+    public function progressMateriVideo()
+    {
+        return $this->hasMany(ProgressMateriVideo::class);
+    }
 }

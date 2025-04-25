@@ -4,13 +4,14 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -20,6 +21,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'role',
+        'image',
         'bio',
         'email',
         'password',
@@ -46,5 +48,35 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function siswaProfile()
+    {
+        return $this->hasOne(SiswaProfile::class);
+    }
+
+    public function forum()
+    {
+        return $this->hasMany(Forum::class);
+    }
+
+    public function forumKomentar()
+    {
+        return $this->hasMany(ForumKomentar::class);
+    }
+
+    public function progressMateriPdf()
+    {
+        return $this->hasMany(ProgressMateriPdf::class);
+    }
+
+    public function progressMateriVideo()
+    {
+        return $this->hasMany(ProgressMateriVideo::class);
+    }
+
+    public function ulasan()
+    {
+        return $this->hasMany(Ulasan::class);
     }
 }

@@ -24,4 +24,14 @@ class MateriPdf extends Model
     {
         return $this->belongsTo(Kelas::class);
     }
+
+    public function latihanPdf()
+    {
+        return $this->hasMany(LatihanPdf::class);
+    }
+
+    public function progressMateriPdf()
+    {
+        return $this->hasMany(ProgressMateriPdf::class);
+    }
 }

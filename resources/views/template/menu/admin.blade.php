@@ -162,6 +162,11 @@
                     </li>
                 </ul>
             </li>
+            <li><a href="{{ route('artikel.index')}}" aria-expanded="false">
+                <i class="flaticon-049-copy"></i>
+                <span class="nav-text">Artikel</span>
+            </a>
+        </li>
         </ul>
     </div>
 </div>
