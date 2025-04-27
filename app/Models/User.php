@@ -55,21 +55,6 @@ class User extends Authenticatable
         return $this->hasOne(SiswaProfile::class);
     }
 
-    public function forum()
-    {
-        return $this->hasMany(Forum::class);
-    }
-
-    public function forumKomentar()
-    {
-        return $this->hasMany(ForumKomentar::class);
-    }
-
-    public function progressMateriPdf()
-    {
-        return $this->hasMany(ProgressMateriPdf::class);
-    }
-
     public function progressMateriVideo()
     {
         return $this->hasMany(ProgressMateriVideo::class);

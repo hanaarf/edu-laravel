@@ -35,14 +35,9 @@ Route::prefix('A')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::resource('data_admin', AdminController::class);
     Route::resource('data_guru', GuruController::class);
     Route::resource('data_siswa', SiswaController::class);
-    Route::resource('artikel', ArtikelController::class);
 });
 
 Route::middleware('auth')->group(function () {
-    // materi pdf
-    Route::resource('materi_pdf', MateriPdfController::class);
-    Route::get('materi_pdf/kelas/{kelas_id}', [MateriPdfController::class, 'filterByKelas'])->name('materi_pdf.filter');
-  
     // materi video
     Route::resource('materi_video', MateriVideoController::class);
     Route::get('materi_video/kelas/{kelas_id}', [MateriVideoController::class, 'filterByKelas'])->name('materi_video.filter');
@@ -52,17 +47,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('latihan_video', LatihanVideoController::class);
     Route::get('/latihan_video/filter/{kelas}', [LatihanVideoController::class, 'filter'])->name('latihan_video.filter');
 
-    // latihan pdf
-    Route::resource('latihan_pdf', LatihanPdfController::class);
-    Route::get('/latihan_pdf/filter/{kelas}', [LatihanPdfController::class, 'filter'])->name('latihan_pdf.filter');
-
     // upload-ck
     Route::post('latihan/upload-ck', [LatihanVideoController::class, 'upload'])->name('latihan.upload-ck');
 
     // get materi,kelas
     Route::get('/get-materi/{kelas_id}', [LatihanVideoController::class, 'getMateriVideo']);
-    Route::get('/get-materi-pdf/{kelas_id}', [LatihanPdfController::class, 'getMateriPdf']);
-
     // hasil latihan
     Route::resource('hasil_latihan', HasilLatihanController::class);
 });

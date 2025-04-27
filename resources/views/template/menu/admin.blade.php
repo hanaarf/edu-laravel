@@ -34,38 +34,6 @@
             </li>
 
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="flaticon-061-puzzle"></i>
-                    <span class="nav-text">Materi PDF</span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">SD</a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{ route('materi_pdf.filter', 1) }}">Kelas 1</a></li>
-                            <li><a href="{{ route('materi_pdf.filter', 2) }}">Kelas 2</a></li>
-                            <li><a href="{{ route('materi_pdf.filter', 3) }}">Kelas 3</a></li>
-                            <li><a href="{{ route('materi_pdf.filter', 4) }}">Kelas 4</a></li>
-                            <li><a href="{{ route('materi_pdf.filter', 5) }}">Kelas 5</a></li>
-                            <li><a href="{{ route('materi_pdf.filter', 6) }}">Kelas 6</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">SMP</a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{ route('materi_pdf.filter', 7) }}">Kelas 7</a></li>
-                            <li><a href="{{ route('materi_pdf.filter', 8) }}">Kelas 8</a></li>
-                            <li><a href="{{ route('materi_pdf.filter', 9) }}">Kelas 9</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">SMA</a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{ route('materi_pdf.filter', 10) }}">Kelas 10</a></li>
-                            <li><a href="{{ route('materi_pdf.filter', 11) }}">Kelas 11</a></li>
-                            <li><a href="{{ route('materi_pdf.filter', 12) }}">Kelas 12</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-381-internet"></i>
                     <span class="nav-text">Materi Video</span>
                 </a>
@@ -130,42 +98,6 @@
                 </ul>
             </li>
 
-            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                <i class="flaticon-044-file"></i>
-                    <span class="nav-text">Latihan Materi</span>
-                </a>
-                <ul aria-expanded="false">
-                    <li><a href="{{ route('latihan_pdf.index') }}">Semua</a></li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">SD</a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{ route('latihan_pdf.filter', 1) }}">Kelas 1</a></li>
-                            <li><a href="{{ route('latihan_pdf.filter', 2) }}">Kelas 2</a></li>
-                            <li><a href="{{ route('latihan_pdf.filter', 3) }}">Kelas 3</a></li>
-                            <li><a href="{{ route('latihan_pdf.filter', 4) }}">Kelas 4</a></li>
-                            <li><a href="{{ route('latihan_pdf.filter', 5) }}">Kelas 5</a></li>
-                            <li><a href="{{ route('latihan_pdf.filter', 6) }}">Kelas 6</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">SMP</a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{ route('latihan_pdf.filter', 7) }}">Kelas 7</a></li>
-                            <li><a href="{{ route('latihan_pdf.filter', 8) }}">Kelas 8</a></li>
-                            <li><a href="{{ route('latihan_pdf.filter', 9) }}">Kelas 9</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">SMA</a>
-                        <ul aria-expanded="false">
-                            <li><a href="{{ route('latihan_pdf.filter', 10) }}">Kelas 10</a></li>
-                            <li><a href="{{ route('latihan_pdf.filter', 11) }}">Kelas 11</a></li>
-                            <li><a href="{{ route('latihan_pdf.filter', 12) }}">Kelas 12</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li><a href="{{ route('artikel.index')}}" aria-expanded="false">
-                <i class="flaticon-049-copy"></i>
-                <span class="nav-text">Artikel</span>
-            </a>
         </li>
         </ul>
     </div>

@@ -110,7 +110,7 @@ class AuthController extends Controller
         ]);
 
         // Ambil user yang sedang login (menggunakan token yang sudah diterima)
-        $user = $request->user(); // Bisa menggunakan auth()->user() juga
+        $user = $request->user(); 
 
         // Menambahkan data ke tabel siswa_profiles
         $siswaProfile = SiswaProfile::create([
