@@ -9,7 +9,7 @@ class Ulasan extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'judul', 'deskripsi'];
+    protected $fillable = ['user_id', 'deskripsi'];
 
     public function user()
     {

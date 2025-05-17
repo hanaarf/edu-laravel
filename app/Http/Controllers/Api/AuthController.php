@@ -110,7 +110,7 @@ class AuthController extends Controller
         ]);
 
         // Ambil user yang sedang login (menggunakan token yang sudah diterima)
-        $user = $request->user(); 
+        $user = $request->user();
 
         // Menambahkan data ke tabel siswa_profiles
         $siswaProfile = SiswaProfile::create([
@@ -135,5 +135,27 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'Logout berhasil',
         ], 200);
+    }
+
+    public function getProfile(Request $request)
+    {
+        $user = $request->user();
+
+        $profile = SiswaProfile::with(['jenjang', 'kelas'])
+            ->where('user_id', $user->id)
+            ->first();
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'name' => $user->name,
+                'email' => $user->email,
+                'bio' => $user->bio,
+                'image' => $user->image,
+                'jenjang' => $profile?->jenjang?->nama,
+                'kelas' => $profile?->kelas?->nama,
+                'belajar_menit_per_hari' => $profile?->belajar_menit_per_hari,
+            ],
+        ]);
     }
 }

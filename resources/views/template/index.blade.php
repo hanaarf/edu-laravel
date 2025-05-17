@@ -17,11 +17,36 @@
     <title>@yield('title')</title>
     @yield('style')
     <!-- link favicon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('web/img/home-nl/logoo.svg') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/web/logo.png') }}">
     <link rel="stylesheet" href="{{ asset('vendor/chartist/css/chartist.min.css') }}">
     <link href="{{ asset('vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/owl-carousel/owl.carousel.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+    <style>
+        .logo-img {
+            height: 50px;
+            transition: all 0.3s ease;
+        }
+    
+        .nav-header .brand-logo img {
+            max-width: 100%;
+            height: auto;
+        }
+    
+        /* Kalau ada class collapse misalnya .menu-toggle aktif di body atau nav-header */
+        .menu-toggle .logo-img,
+        .nav-header.menu-toggle .logo-img {
+            height: 30px;
+        }
+    
+        /* Alternatif: pakai media query */
+        @media (max-width: 768px) {
+            .logo-img {
+                height: 30px;
+            }
+        }
+    </style>
 </head>
 
 <body>

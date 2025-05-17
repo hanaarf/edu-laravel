@@ -13,9 +13,9 @@
     <meta property="og:description" content="Zenix - Crypto Admin Dashboard">
     <meta property="og:image" content="https://zenix.dexignzone.com/xhtml/social-image.png">
     <meta name="format-detection" content="telephone=no">
-    <title>edutopia - login</title>
+    <title>putarpintar - login</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/edu.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/web/logo.png">
     <link href="vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
@@ -41,7 +41,7 @@
                             <div class="col-xl-12">
                                 <div class="auth-form">
                                     <div class="text-center mb-3">
-                                        <img src="assets/logo horizontal.svg" alt="">
+                                        <img src="assets/web/logo.svg" alt="">
                                     </div>
                                     <h4 class="text-center mb-4">Masuk ke akun</h4>
                                     <form method="POST" action="{{ route('login') }}">

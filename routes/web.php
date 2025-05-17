@@ -19,12 +19,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('edu');
+    return view('landingPage');
+});
+Route::get('/testimoni', function () {
+    return view('testimoni');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/testimoni', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('A')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::controller(BaseController::class)->group(function () {
