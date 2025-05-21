@@ -32,6 +32,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/siswa/update-menit', [SiswaApiController::class, 'updateMenit']);   
     Route::post('/siswa/update-profile', [SiswaApiController::class, 'updateProfile']);   
+    Route::put('/siswa/update-avatar', [SiswaApiController::class, 'updateAvatar']);   
 });
 
 

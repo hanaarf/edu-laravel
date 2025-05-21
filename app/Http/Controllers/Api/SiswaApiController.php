@@ -96,4 +96,21 @@ class SiswaApiController extends Controller
     {
         //
     }
+
+    public function updateAvatar(Request $request)
+    {
+        $request->validate([
+            'avatar' => 'required|string|in:ava1.png,ava2.png,ava3.png,ava4.png,ava5.png,ava6.png',
+        ]);
+
+        $user = $request->user();
+        $user->image = $request->avatar;
+        $user->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Avatar berhasil diperbarui.',
+            'image' => $user->image,
+        ]);
+    }
 }
