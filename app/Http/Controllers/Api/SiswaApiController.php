@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\SiswaProfile;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SiswaApiController extends Controller
 {
@@ -31,6 +33,26 @@ class SiswaApiController extends Controller
     {
         //
     }
+
+    public function showUser($id)
+    {
+        $user = User::with('siswaProfile')->find($id);
+
+        if (!$user) {
+            return response()->json(['message' => 'User tidak ditemukan'], 404);
+        }
+
+        return response()->json([
+            'id' => $user->id,
+            'nama' => $user->name,
+            'xp' => $user->siswaProfile->xp_total ?? 0,
+            'img' => $user->image ?? 'ava1.png',
+            'bio' => $user->bio,
+            'jenjang' => $user->siswaProfile->jenjang->nama ?? '',
+            'kelas' => $user->siswaProfile->kelas->nama ?? '',
+        ]);
+    }
+
 
     /**
      * Update the specified resource in storage.
@@ -111,6 +133,64 @@ class SiswaApiController extends Controller
             'success' => true,
             'message' => 'Avatar berhasil diperbarui.',
             'image' => $user->image,
+        ]);
+    }
+
+    public function searchUser(Request $request)
+    {
+        $keyword = $request->query('q');
+
+        $profile = SiswaProfile::where('user_id', $request->user()->id)->first();
+        if (!$profile) {
+            return response()->json(['message' => 'Profil tidak ditemukan'], 404);
+        }
+
+        $users = User::where('name', 'like', "%$keyword%")
+            ->where('id', '!=', $request->user()->id)
+            ->whereHas('siswaProfile', function ($query) use ($profile) {
+                $query->where('jenjang_id', $profile->jenjang_id);
+            })
+            ->with(['siswaProfile.jenjang', 'siswaProfile.kelas'])
+            ->get()
+            ->map(function ($user) {
+                return [
+                    'id' => $user->id,
+                    'nama' => $user->name,
+                    'xp' => $user->siswaProfile->xp_total ?? 0,
+                    'img' => $user->image ?? 'ava1.png',
+                    'jenjang' => $user->siswaProfile->jenjang->nama ?? 'Unknown',
+                    'kelas' => $user->siswaProfile->kelas->nama ?? 'Unknown',
+                    'created_at' => $user->created_at->toDateString(),
+                ];
+            });
+
+        return response()->json($users);
+    }
+
+    public function leaderboard()
+    {
+        $users = User::with(['siswaProfile.jenjang', 'siswaProfile.kelas'])
+            ->whereHas('siswaProfile')
+            ->get()
+            ->sortByDesc(fn($user) => $user->siswaProfile->xp_total ?? 0)
+            ->take(5)
+            ->values() 
+            ->map(function ($user, $index) {
+                return [
+                    'id' => $user->id,
+                    'rank' => $index + 1,
+                    'name' => $user->name,
+                    'xp' => $user->siswaProfile->xp_total ?? 0,
+                    'avatar' => $user->image ?? 'avatar.png',
+                    'jenjang' => $user->siswaProfile->jenjang->nama ?? '-',
+                    'kelas' => $user->siswaProfile->kelas->nama ?? '-',
+                    'created_at' => $user->created_at->toDateString(),
+                ];
+            });
+
+        return response()->json([
+            'success' => true,
+            'data' => $users,
         ]);
     }
 }
