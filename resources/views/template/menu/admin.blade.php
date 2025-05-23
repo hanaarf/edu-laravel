@@ -30,6 +30,7 @@
                     <li><a href="{{ route('data_admin.index')}}">Admin</a></li>
                     <li><a href="{{ route('data_guru.index')}}">Guru</a></li>
                     <li><a href="{{ route('data_siswa.index')}}">Siswa</a></li>
+                    <li><a href="{{ route('data_ulasan.index')}}">Ulasan</a></li>
                 </ul>
             </li>
 

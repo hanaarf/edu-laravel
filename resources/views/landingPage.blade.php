@@ -267,7 +267,7 @@
       </div>
     </section>    
     
-    <!-- ulasan -->
+     <!-- ulasan -->
     <section id="ulasan" class="bg-white py-12">
       <div class="max-w-6xl mx-auto px-4">
         <h1 class="text-3xl font-bold text-center text-gray-800 mb-8 font-quicksand">Mereka sudah merasakannya. Sekarang giliran kamu!</h1>
@@ -275,56 +275,16 @@
         
         <div class="relative overflow-hidden">
           <!-- Track / Slide Container -->
-          <div id="carousel-track" class="flex transition-transform duration-500 ease-in-out w-max">
-            <!-- Card 1 -->
-            <div class="testimonial-card shrink-0 w-90 h-60 mx-4 w-full max-w-sm mx-4 rounded-lg p-6 shadow-md text-center transition-all duration-300">
-              <img src="/assets/icon_card_ulasan.svg" alt="User" class="w-30 h-30 ml-55 -mt-6"> <!--class="w-16 h-16 rounded-full mx-auto mb-4-->
-              <h1 class="-mt-20 text-neutral-950 text-xl font-semibold mr-55">Hana</h1>
-              <p class="text-neutral-950 text-sm font-medium mt-2 mr-25">Hanaaulia09@gmail.com</p>
-              <p class="text-left ml-4 mt-6">Belajarnya jadi ringan dan fun banget! Desain aplikasinya juga fresh, nggak ngebosenin</p>
-            </div>
-            <!-- Card 2 -->
-            <div class="testimonial-card shrink-0 w-90 h-60 mx-4 w-full max-w-sm mx-4 rounded-lg p-6 shadow-md text-center transition-all duration-300">
-              <img src="/assets/icon_card_ulasan.svg" alt="User" class="w-30 h-30 ml-55 -mt-6"> <!--class="w-16 h-16 rounded-full mx-auto mb-4-->
-              <h1 class="-mt-20 text-neutral-950 text-xl font-semibold mr-55">Maliha</h1>
-              <p class="text-neutral-950 text-sm font-medium mt-2 -ml-18">malihaturrahman@gmail.com</p>
-              <p class="text-left ml-4 mt-6">Suka banget sama tampilannya! Cerah, intuitif, dan semua materi gampang dicari.</p>
-            </div>
-            <!-- Card 3 -->
-            <div class="testimonial-card shrink-0 w-90 h-60 mx-4 w-full max-w-sm mx-4 rounded-lg p-6 shadow-md text-center transition-all duration-300">
-              <img src="/assets/icon_card_ulasan.svg" alt="User" class="w-30 h-30 ml-55 -mt-6"> <!--class="w-16 h-16 rounded-full mx-auto mb-4-->
-              <h1 class="-mt-20 text-neutral-950 text-xl font-semibold mr-55">Hana</h1>
-              <p class="text-neutral-950 text-sm font-medium mt-2 mr-25">Hanaaulia09@gmail.com</p>
-              <p class="text-left ml-4 mt-6">Belajarnya jadi ringan dan fun banget! Desain aplikasinya juga fresh, nggak ngebosenin</p>
-            </div>
-            <!-- Card 4 -->
-            <div class="testimonial-card shrink-0 w-90 h-60 mx-4 w-full max-w-sm mx-4 rounded-lg p-6 shadow-md text-center transition-all duration-300">
-              <img src="/assets/icon_card_ulasan.svg" alt="User" class="w-30 h-30 ml-55 -mt-6"> <!--class="w-16 h-16 rounded-full mx-auto mb-4-->
-              <h1 class="-mt-20 text-neutral-950 text-xl font-semibold mr-55">Maliha</h1>
-              <p class="text-neutral-950 text-sm font-medium mt-2 -ml-18">malihaturrahman@gmail.com</p>
-              <p class="text-left ml-4 mt-6">Suka banget sama tampilannya! Cerah, intuitif, dan semua materi gampang dicari.</p>
-            </div>
-            <!-- Card 5 -->
-            <div class="testimonial-card shrink-0 w-90 h-60 mx-4 w-full max-w-sm mx-4 rounded-lg p-6 shadow-md text-center transition-all duration-300">
-              <img src="/assets/icon_card_ulasan.svg" alt="User" class="w-30 h-30 ml-55 -mt-6"> <!--class="w-16 h-16 rounded-full mx-auto mb-4-->
-              <h1 class="-mt-20 text-neutral-950 text-xl font-semibold mr-55">Hana</h1>
-              <p class="text-neutral-950 text-sm font-medium mt-2 mr-25">Hanaaulia09@gmail.com</p>
-              <p class="text-left ml-4 mt-6">Belajarnya jadi ringan dan fun banget! Desain aplikasinya juga fresh, nggak ngebosenin</p>
-            </div>
+          <div id="carousel-track" class="flex transition-transform duration-500 ease-in-out">
+           @foreach($ulasan as $testi)
+          <div class="testimonial-card shrink-0 min-h-[15rem] max-w-sm w-full mx-4 rounded-lg p-6 shadow-md text-left transition-all duration-300 bg-white flex flex-col justify-between">
+              <img src="/assets/icon_card_ulasan.svg" alt="User" class="w-20 h-20 mx-auto -mt-6">
+              <h1 class="mt-2 text-neutral-950 text-xl font-semibold">{{$testi->user->name}}</h1>
+              <p class="text-neutral-950 text-sm font-medium mt-1">{{$testi->user->email}}</p>
+              <p class="text-left mt-4 break-words">{{ \Illuminate\Support\Str::limit($testi->deskripsi, 150) }}</p>
+          </div>
+          @endforeach
 
-            <!--  -->
-            <div class="testimonial-card shrink-0 w-90 h-60 mx-4 w-full max-w-sm mx-4 rounded-lg p-6 shadow-md text-center transition-all duration-300">
-              <img src="/assets/icon_card_ulasan.svg" alt="User" class="w-30 h-30 ml-55 -mt-6"> <!--class="w-16 h-16 rounded-full mx-auto mb-4-->
-              <h1 class="-mt-20 text-neutral-950 text-xl font-semibold mr-55">Hana</h1>
-              <p class="text-neutral-950 text-sm font-medium mt-2 mr-25">Hanaaulia09@gmail.com</p>
-              <p class="text-left ml-4 mt-6">Belajarnya jadi ringan dan fun banget! Desain aplikasinya juga fresh, nggak ngebosenin</p>
-            </div>
-            <div class="testimonial-card shrink-0 w-90 h-60 mx-4 w-full max-w-sm mx-4 rounded-lg p-6 shadow-md text-center transition-all duration-300">
-              <img src="/assets/icon_card_ulasan.svg" alt="User" class="w-30 h-30 ml-55 -mt-6"> <!--class="w-16 h-16 rounded-full mx-auto mb-4-->
-              <h1 class="-mt-20 text-neutral-950 text-xl font-semibold mr-55">Maliha</h1>
-              <p class="text-neutral-950 text-sm font-medium mt-2 -ml-18">malihaturrahman@gmail.com</p>
-              <p class="text-left ml-4 mt-6">Suka banget sama tampilannya! Cerah, intuitif, dan semua materi gampang dicari.</p>
-            </div>
           </div>
         </div>
         <!-- button -->
@@ -336,7 +296,7 @@
           </a>
         </div>                
       </div>
-    </section>     
+    </section>      
            
     <!-- about -->
     <section id="tentang" class="bg-[#FAAE2B]py-35">

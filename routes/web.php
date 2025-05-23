@@ -7,7 +7,9 @@ use App\Http\Controllers\Admin\GuruController;
 use App\Http\Controllers\Admin\JenjangController;
 use App\Http\Controllers\Admin\KelasController;
 use App\Http\Controllers\Admin\SiswaController;
+use App\Http\Controllers\Admin\UlasanController;
 use App\Http\Controllers\HasilLatihanController;
+use App\Http\Controllers\LandController;
 use App\Http\Controllers\LatihanPdfController;
 use App\Http\Controllers\LatihanSoalController;
 use App\Http\Controllers\LatihanVideoController;
@@ -18,17 +20,18 @@ use App\Models\LatihanVideo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('landingPage');
-});
-Route::get('/testimoni', function () {
-    return view('testimoni');
-});
+// Route::get('/', function () {
+//     return view('landingPage');
+// });
+// Route::get('/testimoni', function () {
+//     return view('testimoni');
+// });
 
 Auth::routes();
 
-// Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// Route::get('/testimoni', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [LandController::class, 'indexL'])->name('home');
+Route::get('/testimoni', [LandController::class, 'index'])->name('testi');
+
 
 Route::prefix('A')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::controller(BaseController::class)->group(function () {
@@ -39,6 +42,8 @@ Route::prefix('A')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::resource('data_admin', AdminController::class);
     Route::resource('data_guru', GuruController::class);
     Route::resource('data_siswa', SiswaController::class);
+    Route::resource('data_ulasan', UlasanController::class);
+
 });
 
 Route::middleware('auth')->group(function () {
