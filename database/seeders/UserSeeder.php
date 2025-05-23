@@ -28,13 +28,6 @@ class UserSeeder extends Seeder
                 'bio' => 'hi im teacher',
                 'password' => bcrypt('123456')
             ),
-            array(
-                'name' => 'user1',
-                'email' => 'user1@gmail.com',
-                'role' => 3,
-                'bio' => 'hi im user',
-                'password' => bcrypt('123456')
-            ),
         ));
     }
 }

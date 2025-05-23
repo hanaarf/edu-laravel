@@ -35,6 +35,7 @@ class MateriApiController extends Controller
             return [
                 'id' => $materi->id,
                 'judul' => $materi->judul,
+                'subjudul' => $materi->subjudul,
                 'deskripsi' => $materi->deskripsi,
                 'youtube_url' => $materi->youtube_url,
                 'created_at' => $materi->created_at->format('Y-m-d H:i:s'),
@@ -72,6 +73,7 @@ class MateriApiController extends Controller
             return [
                 'id' => $materi->id,
                 'judul' => $materi->judul,
+                'subjudul' => $materi->subjudul,
                 'deskripsi' => $materi->deskripsi,
                 'youtube_url' => $materi->youtube_url,
                 'created_at' => $materi->created_at->format('Y-m-d H:i:s'),
@@ -111,6 +113,7 @@ class MateriApiController extends Controller
             'data' => [
                 'id' => $materi->id,
                 'judul' => $materi->judul,
+                'subjudul' => $materi->subjudul,
                 'deskripsi' => $materi->deskripsi,
                 'youtube_url' => $materi->youtube_url,
                 'jenjang' => $materi->jenjang->nama ?? '-',
@@ -178,6 +181,7 @@ class MateriApiController extends Controller
             return [
                 'id' => $item->id,
                 'judul' => $item->judul,
+                'subjudul' => $item->subjudul,
                 'deskripsi' => $item->deskripsi,
                 'youtube_url' => $item->youtube_url,
                 'created_at' => $item->created_at->format('Y-m-d H:i:s'),

@@ -79,8 +79,6 @@ class LatihanVideoController extends Controller
             'opsi_b.*' => 'required|string',
             'opsi_c' => 'required|array',
             'opsi_c.*' => 'required|string',
-            'opsi_d' => 'required|array',
-            'opsi_d.*' => 'required|string',
             'jawaban' => 'required|array',
             'jawaban.*' => 'required|in:A,B,C,D',
             'xp' => 'required|array',
@@ -97,7 +95,6 @@ class LatihanVideoController extends Controller
                 'opsi_a' => $request->opsi_a[$key],
                 'opsi_b' => $request->opsi_b[$key],
                 'opsi_c' => $request->opsi_c[$key],
-                'opsi_d' => $request->opsi_d[$key],
                 'jawaban' => $request->jawaban[$key],
                 'xp' => $request->xp[$key],
             ]);
@@ -136,9 +133,8 @@ class LatihanVideoController extends Controller
             'opsi_a' => 'required|string',
             'opsi_b' => 'required|string',
             'opsi_c' => 'required|string',
-            'opsi_d' => 'required|string',
             'jawaban' => 'required|string',
-            'xp' => 'required|numeric|min:0',
+            'xp' => 'required',
         ]);
 
         $latihan_video->update($validated);

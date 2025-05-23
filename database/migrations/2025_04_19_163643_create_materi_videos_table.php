@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('jenjang_id')->constrained('jenjang')->onDelete('cascade');
             $table->foreignId('kelas_id')->constrained('kelas')->onDelete('cascade');
             $table->string('judul');
+            $table->string('subjudul');
             $table->text('deskripsi');
             $table->string('youtube_url');
             $table->timestamps();

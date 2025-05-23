@@ -71,6 +71,10 @@
                                         <input type="text" name="judul" id="judul" class="form-control" required>
                                     </div>
                                     <div class="form-group col-md-6">
+                                        <label for="judul" class="form-label">Sub Judul</label>
+                                        <input type="text" name="subjudul" id="subjudul" class="form-control" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
                                         <label for="link" class="form-label">YouTube Link</label>
                                         <input type="url" name="youtube_url" id="link" class="form-control" required>
                                     </div>
@@ -84,7 +88,7 @@
                                         </select>
                                     </div>
                                     
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-lg-12">
                                         <label for="kelas" class="form-label">Kelas</label>
                                         <select name="kelas_id" id="kelas" class="form-control">
                                             <option value="">-- Pilih Kelas --</option>

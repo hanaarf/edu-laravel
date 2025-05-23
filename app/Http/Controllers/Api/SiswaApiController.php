@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\JawabanLatihanVideo;
+use App\Models\LatihanVideo;
+use App\Models\MateriVideo;
 use App\Models\SiswaProfile;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -167,14 +170,20 @@ class SiswaApiController extends Controller
         return response()->json($users);
     }
 
-    public function leaderboard()
+    public function leaderboard(Request $request)
     {
+        $user = $request->user();
+        $profile = $user->siswaProfile;
+
         $users = User::with(['siswaProfile.jenjang', 'siswaProfile.kelas'])
-            ->whereHas('siswaProfile')
+            ->whereHas('siswaProfile', function ($query) use ($profile) {
+                $query->where('jenjang_id', $profile->jenjang_id)
+                      ->where('kelas_id', $profile->kelas_id);
+            })
             ->get()
             ->sortByDesc(fn($user) => $user->siswaProfile->xp_total ?? 0)
             ->take(5)
-            ->values() 
+            ->values()
             ->map(function ($user, $index) {
                 return [
                     'id' => $user->id,
@@ -191,6 +200,107 @@ class SiswaApiController extends Controller
         return response()->json([
             'success' => true,
             'data' => $users,
+        ]);
+    }
+
+    public function latihanMateri(Request $request)
+    {
+        $user = $request->user();
+        $profile = $user->siswaProfile;
+
+        $materi = MateriVideo::with('latihanVideo')
+            ->where('jenjang_id', $profile->jenjang_id)
+            ->where('kelas_id', $profile->kelas_id)
+            ->get();
+
+        $result = $materi->map(function ($item) use ($user) {
+            $soalIds = $item->latihanVideo->pluck('id');
+            $jumlahSoal = $soalIds->count();
+            $jumlahJawab = JawabanLatihanVideo::where('user_id', $user->id)
+                ->whereIn('latihan_video_id', $soalIds)
+                ->count();
+            if ($jumlahSoal == 0) {
+                $status = 'belum'; // Tidak ada soal
+            } elseif ($jumlahJawab == 0) {
+                $status = 'belum'; // Belum mulai
+            } elseif ($jumlahJawab < $jumlahSoal) {
+                $status = 'lanjut'; // Sudah mulai, belum selesai
+            } else {
+                $status = 'selesai'; // Sudah selesai semua
+            }
+
+            return [
+                'id' => $item->id,
+                'judul' => $item->judul,
+                'subjudul' => $item->subjudul,
+                'deskripsi' => $item->deskripsi,
+                'youtube_url' => $item->youtube_url,
+                'jumlah_soal' => $jumlahSoal ?? 0,
+                'jumlah_jawab' => $jumlahJawab ?? 0,
+                'status_latihan' => $status,
+            ];
+        });
+
+        return response()->json([
+            'success' => true,
+            'data' => $result
+        ]);
+    }
+
+    public function latihanSoal(Request $request, $materi_id)
+    {
+        $user = $request->user(); 
+
+        $soal = LatihanVideo::where('materi_video_id', $materi_id)->get();
+        $jawabanUser = JawabanLatihanVideo::where('user_id', $user->id)->pluck('latihan_video_id')->toArray();
+
+        $data = $soal->map(function ($item) use ($jawabanUser) {
+            return [
+                'id' => $item->id,
+                'pertanyaan' => $item->pertanyaan,
+                'opsi_a' => $item->opsi_a,
+                'opsi_b' => $item->opsi_b,
+                'opsi_c' => $item->opsi_c,
+                'jawaban' => $item->jawaban,
+                'xp' => $item->xp,
+                'sudah_dijawab' => in_array($item->id, $jawabanUser),
+            ];
+        });
+
+        return response()->json([
+            'success' => true,
+            'data' => $data
+        ]);
+    }
+
+    public function simpanJawaban(Request $request)
+    {
+        $request->validate([
+            'latihan_video_id' => 'required|exists:latihan_videos,id',
+            'jawaban_user' => 'required|string',
+        ]);
+
+        $user = $request->user();
+        $soal = LatihanVideo::findOrFail($request->latihan_video_id);
+
+        $isBenar = strtolower(trim($request->jawaban_user)) === strtolower(trim($soal->jawaban));
+
+        JawabanLatihanVideo::create([
+            'user_id' => $user->id,
+            'latihan_video_id' => $soal->id,
+            'jawaban_user' => $request->jawaban_user,
+            'is_benar' => $isBenar,
+        ]);
+
+        if ($isBenar) {
+            $user->siswaProfile->increment('xp_total', $soal->xp);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Jawaban disimpan',
+            'is_benar' => $isBenar,
+            'xp_didapat' => $isBenar ? $soal->xp : 0,
         ]);
     }
 }

@@ -15,7 +15,6 @@ class LatihanVideo extends Model
         'opsi_a',
         'opsi_b',
         'opsi_c',
-        'opsi_d',
         'jawaban',
         'xp'
     ];
@@ -23,5 +22,10 @@ class LatihanVideo extends Model
     public function materiVideo()
     {
         return $this->belongsTo(MateriVideo::class, 'materi_video_id');
+    }
+
+    public function jawaban()
+    {
+        return $this->hasMany(JawabanLatihanVideo::class);
     }
 }

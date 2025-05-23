@@ -12,7 +12,7 @@ class MateriVideo extends Model
     protected $table = 'materi_videos';
 
     protected $fillable = [
-        'jenjang_id', 'kelas_id', 'judul', 'deskripsi', 'youtube_url'
+        'jenjang_id', 'kelas_id', 'judul', 'subjudul','deskripsi', 'youtube_url'
     ];
 
     public function jenjang()
@@ -29,7 +29,7 @@ class MateriVideo extends Model
     {
         return $this->hasMany(LatihanVideo::class);
     }
-
+    
     public function progressMateriVideo()
     {
         return $this->hasMany(ProgressMateriVideo::class);

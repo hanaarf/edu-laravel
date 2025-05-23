@@ -48,22 +48,19 @@
                                 </div>
 
                                 <div class="form-row">
-                                    <div class="form-group col-md-3">
+                                    <div class="form-group col-md-4">
                                         <label>Opsi A</label>
                                         <input type="text" class="form-control" name="opsi_a" value="{{ $latihan_video->opsi_a }}" required>
                                     </div>
-                                    <div class="form-group col-md-3">
+                                    <div class="form-group col-md-4">
                                         <label>Opsi B</label>
                                         <input type="text" class="form-control" name="opsi_b" value="{{ $latihan_video->opsi_b }}" required>
                                     </div>
-                                    <div class="form-group col-md-3">
+                                    <div class="form-group col-md-4">
                                         <label>Opsi C</label>
                                         <input type="text" class="form-control" name="opsi_c" value="{{ $latihan_video->opsi_c }}" required>
                                     </div>
-                                    <div class="form-group col-md-3">
-                                        <label>Opsi D</label>
-                                        <input type="text" class="form-control" name="opsi_d" value="{{ $latihan_video->opsi_d }}" required>
-                                    </div>
+                                  
                                 </div>
 
                                 <div class="form-group">
@@ -73,13 +70,12 @@
                                         <option value="A" {{ $latihan_video->jawaban == 'A' ? 'selected' : '' }}>Opsi A</option>
                                         <option value="B" {{ $latihan_video->jawaban == 'B' ? 'selected' : '' }}>Opsi B</option>
                                         <option value="C" {{ $latihan_video->jawaban == 'C' ? 'selected' : '' }}>Opsi C</option>
-                                        <option value="D" {{ $latihan_video->jawaban == 'D' ? 'selected' : '' }}>Opsi D</option>
-                                    </select>
+                                       </select>
                                 </div>
 
                                 <div class="form-group col-lg-12 mt-3">
                                     <label for="xp">Nilai XP</label>
-                                    <input type="number" name="xp[]" class="form-control" value="{{ $latihan_video->xp }} placeholder="Masukkan nilai XP" required>
+                                    <input type="number" name="xp" class="form-control" value="{{ $latihan_video->xp }}" placeholder="Masukkan nilai XP" required>
                                 </div>  
 
                                 <button type="submit" class="btn btn-primary mt-4">Update Materi</button>

@@ -48,21 +48,17 @@
                                 </div>
 
                                 <div class="form-row">
-                                    <div class="form-group col-md-3">
+                                    <div class="form-group col-md-4">
                                         <label>Opsi A</label>
                                         <input type="text" class="form-control" name="opsi_a" value="{{ $latihan_pdf->opsi_a }}" required>
                                     </div>
-                                    <div class="form-group col-md-3">
+                                    <div class="form-group col-md-4">
                                         <label>Opsi B</label>
                                         <input type="text" class="form-control" name="opsi_b" value="{{ $latihan_pdf->opsi_b }}" required>
                                     </div>
-                                    <div class="form-group col-md-3">
+                                    <div class="form-group col-md-4">
                                         <label>Opsi C</label>
                                         <input type="text" class="form-control" name="opsi_c" value="{{ $latihan_pdf->opsi_c }}" required>
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label>Opsi D</label>
-                                        <input type="text" class="form-control" name="opsi_d" value="{{ $latihan_pdf->opsi_d }}" required>
                                     </div>
                                 </div>
 
@@ -73,8 +69,7 @@
                                         <option value="A" {{ $latihan_pdf->jawaban == 'A' ? 'selected' : '' }}>Opsi A</option>
                                         <option value="B" {{ $latihan_pdf->jawaban == 'B' ? 'selected' : '' }}>Opsi B</option>
                                         <option value="C" {{ $latihan_pdf->jawaban == 'C' ? 'selected' : '' }}>Opsi C</option>
-                                        <option value="D" {{ $latihan_pdf->jawaban == 'D' ? 'selected' : '' }}>Opsi D</option>
-                                    </select>
+                                         </select>
                                 </div>
 
                                 <div class="form-group col-lg-12 mt-3">

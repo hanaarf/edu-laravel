@@ -149,6 +149,7 @@ class AuthController extends Controller
             'success' => true,
             'data' => [
                 'name' => $user->name,
+                'xpTotal' => $profile->xp_total,
                 'email' => $user->email,
                 'bio' => $user->bio,
                 'image' => $user->image,

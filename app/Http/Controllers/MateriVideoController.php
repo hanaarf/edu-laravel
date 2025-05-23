@@ -44,6 +44,7 @@ class MateriVideoController extends Controller
     {
         $request->validate([
             'judul' => 'required',
+            'subjudul' => 'required',
             'deskripsi' => 'nullable',
             'youtube_url' => 'required',
             'jenjang_id' => 'required',
@@ -54,6 +55,7 @@ class MateriVideoController extends Controller
 
         MateriVideo::create([
             'judul' => $request->judul,
+            'subjudul' => $request->subjudul,
             'deskripsi' => $request->deskripsi,
             'youtube_url' => $embedLink,
             'jenjang_id' => $request->jenjang_id,
@@ -89,6 +91,7 @@ class MateriVideoController extends Controller
     {
         $request->validate([
             'judul' => 'required',
+            'subjudul' => 'required',
             'deskripsi' => 'nullable',
             'youtube_url' => 'required',
             'jenjang_id' => 'required',
@@ -103,6 +106,7 @@ class MateriVideoController extends Controller
 
         $materi_video->update([
             'judul' => $request->judul,
+            'subjudul' => $request->subjudul,
             'deskripsi' => $request->deskripsi,
             'youtube_url' => $youtubeUrl,
             'jenjang_id' => $request->jenjang_id,

@@ -122,10 +122,6 @@
                                             <input type="text" name="opsi_c[]" class="form-control" required>
                                         </div>
                             
-                                        <div class="mb-3">
-                                            <label>Opsi D</label>
-                                            <input type="text" name="opsi_d[]" class="form-control" required>
-                                        </div>
                                         <div class="col-lg-12">
                                             <label>Jawaban Benar</label>
                                             <select name="jawaban[]" class="form-control" required>
@@ -155,21 +151,17 @@
                                         <label for="judul" class="form-label">Pertanyaan</label>
                                         <textarea name="pertanyaan[]" class="mt-2 editor"></textarea>
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="mb-4">
                                         <label>Opsi A</label>
                                         <input type="text" name="opsi_a[]" class="form-control" required>
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="mb-4">
                                         <label>Opsi B</label>
                                         <input type="text" name="opsi_b[]" class="form-control" required>
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="mb-4">
                                         <label>Opsi C</label>
                                         <input type="text" name="opsi_c[]" class="form-control" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label>Opsi D</label>
-                                        <input type="text" name="opsi_d[]" class="form-control" required>
                                     </div>
                                     <div class="col-lg-12">
                                         <label>Jawaban Benar</label>
@@ -178,8 +170,7 @@
                                             <option value="A">Opsi A</option>
                                             <option value="B">Opsi B</option>
                                             <option value="C">Opsi C</option>
-                                            <option value="D">Opsi D</option>
-                                        </select>
+                                            </select>
                                     </div>
                                     <div class="form-group col-lg-12 mt-3">
                                         <label for="xp">Nilai XP</label>

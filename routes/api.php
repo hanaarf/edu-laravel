@@ -35,7 +35,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/siswa/update-avatar', [SiswaApiController::class, 'updateAvatar']);   
     Route::get('/siswa/search-users', [SiswaApiController::class, 'searchUser']);   
     Route::get('/siswa/users/{id}', [SiswaApiController::class, 'showUser']);   
-    Route::get('/siswa/leaderboard', [SiswaApiController::class, 'leaderboard']);   
+    Route::get('/siswa/leaderboard', [SiswaApiController::class, 'leaderboard']);  
+
+    Route::get('/siswa/latihan-materi', [SiswaApiController::class, 'latihanMateri']);   
+    Route::get('/siswa/latihan-soal/{materi_id}', [SiswaApiController::class, 'latihanSoal']);   
+    Route::post('/siswa/jawaban-soal', [SiswaApiController::class, 'simpanJawaban']);   
 });
 
 
