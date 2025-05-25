@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\ArtikelApiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ForgotPasswordController;
 use App\Http\Controllers\Api\JenjangController;
 use App\Http\Controllers\Api\MateriApiController;
 use App\Http\Controllers\Api\SiswaApiController;
@@ -11,6 +12,10 @@ use App\Models\SiswaProfile;
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
+
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail']);
+Route::post('/reset-password', [ForgotPasswordController::class, 'reset']);
+
 Route::get('/jenjang', [JenjangController::class, 'getJenjang']);
 Route::get('/kelas/{jenjang_id}', [JenjangController::class, 'getKelasByJenjang']);
 Route::get('/materi/search-public', [MateriApiController::class, 'searchByJudulPublic']);

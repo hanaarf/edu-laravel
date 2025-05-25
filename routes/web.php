@@ -27,6 +27,11 @@ use Illuminate\Support\Facades\Route;
 //     return view('testimoni');
 // });
 
+Route::get('/home', function () {
+    return view('pw');
+});
+
+
 Auth::routes();
 
 Route::get('/', [LandController::class, 'indexL'])->name('home');
