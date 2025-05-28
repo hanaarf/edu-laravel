@@ -53,14 +53,15 @@ class FollowController extends Controller
         return response()->json(['success' => true, 'followed' => $isFollowing]);
     }
 
-
     // List followers user tertentu
     public function followers($user_id)
     {
         $user = User::findOrFail($user_id);
         return response()->json([
             'count' => $user->followers()->count(),
-            'data' => $user->followers()->get()
+            'data' => $user->followers()
+                ->select('users.id', 'users.name', 'users.image')
+                ->get()
         ]);
     }
 
@@ -70,10 +71,12 @@ class FollowController extends Controller
         $user = User::findOrFail($user_id);
         return response()->json([
             'count' => $user->following()->count(),
-            'data' => $user->following()->get()
+            'data' => $user->following()
+                ->select('users.id', 'users.name', 'users.image')
+                ->get()
         ]);
     }
-    
+
     /**
      * Display a listing of the resource.
      */

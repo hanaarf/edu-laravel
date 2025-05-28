@@ -26,32 +26,31 @@ Route::middleware('auth:sanctum')->get('/materi/search', [MateriApiController::c
 
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/complete-registration', [AuthController::class, 'completeRegistration']);
-    Route::post('/logout', [AuthController::class, 'logout']);
-    Route::get('/profile', [AuthController::class, 'getProfile']);
+  Route::post('/complete-registration', [AuthController::class, 'completeRegistration']);
+  Route::post('/logout', [AuthController::class, 'logout']);
+  Route::get('/profile', [AuthController::class, 'getProfile']);
 
-    Route::get('/materi', [MateriApiController::class, 'index']);
-    Route::get('/materi-limit', [MateriApiController::class, 'indexLimit']);
-    Route::get('/materi/{id}', [MateriApiController::class, 'show']);   
+  Route::get('/materi', [MateriApiController::class, 'index']);
+  Route::get('/materi-limit', [MateriApiController::class, 'indexLimit']);
+  Route::get('/materi/{id}', [MateriApiController::class, 'show']);
 
-    Route::post('/ulasan', [UlasanApiController::class, 'store']); 
-    Route::get('/ulasan/status', [UlasanApiController::class, 'status']); 
+  Route::post('/ulasan', [UlasanApiController::class, 'store']);
+  Route::get('/ulasan/status', [UlasanApiController::class, 'status']);
 
-    Route::post('/siswa/update-menit', [SiswaApiController::class, 'updateMenit']);   
-    Route::post('/siswa/update-profile', [SiswaApiController::class, 'updateProfile']);   
-    Route::put('/siswa/update-avatar', [SiswaApiController::class, 'updateAvatar']);   
-    Route::get('/siswa/search-users', [SiswaApiController::class, 'searchUser']);   
-    Route::get('/siswa/users/{id}', [SiswaApiController::class, 'showUser']);   
-    Route::get('/siswa/leaderboard', [SiswaApiController::class, 'leaderboard']);  
+  Route::post('/siswa/update-menit', [SiswaApiController::class, 'updateMenit']);
+  Route::post('/siswa/update-profile', [SiswaApiController::class, 'updateProfile']);
+  Route::put('/siswa/update-avatar', [SiswaApiController::class, 'updateAvatar']);
+  Route::get('/siswa/search-users', [SiswaApiController::class, 'searchUser']);
+  Route::get('/siswa/users/{id}', [SiswaApiController::class, 'showUser']);
+  Route::get('/siswa/leaderboard', [SiswaApiController::class, 'leaderboard']);
 
-    Route::get('/siswa/latihan-materi', [SiswaApiController::class, 'latihanMateri']);   
-    Route::get('/siswa/latihan-soal/{materi_id}', [SiswaApiController::class, 'latihanSoal']);   
-    Route::post('/siswa/jawaban-soal', [SiswaApiController::class, 'simpanJawaban']);   
+  Route::get('/siswa/latihan-materi', [SiswaApiController::class, 'latihanMateri']);
+  Route::get('/siswa/latihan-soal/{materi_id}', [SiswaApiController::class, 'latihanSoal']);
+  Route::post('/siswa/jawaban-soal', [SiswaApiController::class, 'simpanJawaban']);
 
   Route::post('/follow', [FollowController::class, 'follow']);
-    Route::post('/unfollow', [FollowController::class, 'unfollow']);
-    Route::get('/is-following/{userId}', [FollowController::class, 'isFollowing']);
+  Route::post('/unfollow', [FollowController::class, 'unfollow']);
+  Route::get('/is-following/{userId}', [FollowController::class, 'isFollowing']);
+  Route::get('/followers/{user_id}', [FollowController::class, 'followers']);
+  Route::get('/following/{user_id}', [FollowController::class, 'following']);
 });
-
-
-
