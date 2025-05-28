@@ -376,21 +376,21 @@
 
           <!-- Social Media Icons -->
           <div class="flex space-x-5 mt-10 mb-20">
-            <a href="#" class="bg-[#E9365BE5] w-13 h-13 flex items-center justify-center rounded-full">
+            {{-- <a href="#" class="bg-[#E9365BE5] w-13 h-13 flex items-center justify-center rounded-full">
               <i class="fab fa-youtube text-white text-2xl"></i>
-            </a>
+            </a> --}}
             <a href="#" class="bg-[#00D4CD] w-13 h-13 flex items-center justify-center rounded-full">
               <i class="fab fa-facebook-f text-white text-2xl"></i>
             </a>            
             <a href="#" class="bg-[#FAAE2BCC] w-13 h-13 flex items-center justify-center rounded-full">
               <i class="fab fa-instagram text-white text-2xl"></i>
             </a>
-            <a href="#" class="bg-[#E9365BE5] w-13 h-13 flex items-center justify-center rounded-full">
+            {{-- <a href="#" class="bg-[#E9365BE5] w-13 h-13 flex items-center justify-center rounded-full">
               <i class="fab fa-x-twitter text-white text-2xl"></i>
             </a>
             <a href="#" class="bg-[#00D4CD] w-13 h-13 flex items-center justify-center rounded-full">
               <i class="fab fa-tiktok text-white text-2xl"></i>
-            </a>
+            </a> --}}
           </div>
       
           <!-- Garis -->

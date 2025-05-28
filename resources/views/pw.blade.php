@@ -39,11 +39,6 @@
                         </div>
                         <!-- &amp; -->
                     </div>
-                    @if (session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
-                    </div>
-                    @endif
                 </div>
 
                 <div class="row justify-content-center my-auto">

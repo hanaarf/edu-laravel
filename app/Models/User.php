@@ -69,4 +69,16 @@ class User extends Authenticatable
     {
         return $this->hasMany(JawabanLatihanVideo::class);
     }
+
+    // User yang di-follow oleh user ini
+    public function following()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'follower_id', 'following_id');
+    }
+
+    // User yang follow user ini
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'following_id', 'follower_id');
+    }
 }

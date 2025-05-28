@@ -37,6 +37,12 @@ class UlasanApiController extends Controller
         ]);
     }
 
+    public function status(Request $request)
+    {
+        $sudahUlasan = Ulasan::where('user_id', $request->user()->id)->exists();
+        return response()->json(['sudah_ulasan' => $sudahUlasan]);
+    }
+
 
     /**
      * Display the specified resource.
