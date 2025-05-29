@@ -53,27 +53,49 @@ class FollowController extends Controller
         return response()->json(['success' => true, 'followed' => $isFollowing]);
     }
 
-    // List followers user tertentu
     public function followers($user_id)
     {
         $user = User::findOrFail($user_id);
+        $followers = $user->followers()
+            ->leftJoin('siswa_profiles', 'users.id', '=', 'siswa_profiles.user_id')
+            ->leftJoin('jenjang', 'siswa_profiles.jenjang_id', '=', 'jenjang.id')
+            ->leftJoin('kelas', 'siswa_profiles.kelas_id', '=', 'kelas.id')
+            ->select(
+                'users.id',
+                'users.name',
+                'users.image',
+                'jenjang.nama as jenjang',
+                'kelas.nama as kelas',
+                'siswa_profiles.xp_total as xp'
+            )
+            ->get();
+
         return response()->json([
             'count' => $user->followers()->count(),
-            'data' => $user->followers()
-                ->select('users.id', 'users.name', 'users.image')
-                ->get()
+            'data' => $followers
         ]);
     }
 
-    // List following user tertentu
     public function following($user_id)
     {
         $user = User::findOrFail($user_id);
+        $following = $user->following()
+            ->leftJoin('siswa_profiles', 'users.id', '=', 'siswa_profiles.user_id')
+            ->leftJoin('jenjang', 'siswa_profiles.jenjang_id', '=', 'jenjang.id')
+            ->leftJoin('kelas', 'siswa_profiles.kelas_id', '=', 'kelas.id')
+            ->select(
+                'users.id',
+                'users.name',
+                'users.image',
+                'jenjang.nama as jenjang',
+                'kelas.nama as kelas',
+                'siswa_profiles.xp_total as xp'
+            )
+            ->get();
+
         return response()->json([
             'count' => $user->following()->count(),
-            'data' => $user->following()
-                ->select('users.id', 'users.name', 'users.image')
-                ->get()
+            'data' => $following
         ]);
     }
 
