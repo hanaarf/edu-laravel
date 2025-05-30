@@ -1,11 +1,4 @@
 @extends('template.index')
-
-@section('title', 'detail artikel')
-
-@section('style')
-<link href="{{ asset('vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
-@endsection
-
 @section('main')
 <div class="content-body">
     <div class="container-fluid">
@@ -27,26 +20,27 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Detail artikel</h4>
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h4 class="card-title mb-0">Daftar Materi</h4>
+                        <a href="{{ route('latihan_video.create') }}" class="btn btn-rounded btn-outline-primary">
+                            + Materi Soal
+                        </a>
                     </div>
                     <div class="card-body">
-                        <img src="{{ asset('storage/' . $artikel->cover_image) }}" alt="" width="200"
-                                                height="200"><br>
-                        <br><h5><strong>Judul:</strong> {{ $artikel->judul }}</h5>
-                        <p><strong>Deskripsi:</strong> {{ $artikel->deskripsi }}</p>
+                        <div class="">
+                            @forelse($materiVideos as $materi)
+                                <a href="{{ route('latihan_video.soalByMateri', $materi->id) }}"
+                                   class="btn btn-primary mb-2">
+                                    {{ $materi->judul }}
+                                </a>
+                            @empty
+                                <div class="alert alert-warning w-100">Tidak ada materi untuk kelas ini.</div>
+                            @endforelse
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>        
+        </div>
     </div>
 </div>
-
-
-@endsection
-
-@section('script')
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script src="{{ asset('vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('js/plugins-init/datatables.init.js') }}"></script>
 @endsection

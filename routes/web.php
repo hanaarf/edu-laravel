@@ -48,7 +48,6 @@ Route::prefix('A')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::resource('data_guru', GuruController::class);
     Route::resource('data_siswa', SiswaController::class);
     Route::resource('data_ulasan', UlasanController::class);
-
 });
 
 Route::middleware('auth')->group(function () {
@@ -56,11 +55,12 @@ Route::middleware('auth')->group(function () {
     Route::resource('materi_video', MateriVideoController::class);
     Route::get('materi_video/kelas/{kelas_id}', [MateriVideoController::class, 'filterByKelas'])->name('materi_video.filter');
     Route::get('/get-kelas/{jenjang_id}', [MateriVideoController::class, 'getKelas']);
-  
+
     // latihan video
     Route::resource('latihan_video', LatihanVideoController::class);
     Route::get('/latihan_video/filter/{kelas}', [LatihanVideoController::class, 'filter'])->name('latihan_video.filter');
-
+    Route::get('/latihan_video/materi/{materi_id}', [LatihanVideoController::class, 'soalByMateri'])->name('latihan_video.soalByMateri');
+    
     // upload-ck
     Route::post('latihan/upload-ck', [LatihanVideoController::class, 'upload'])->name('latihan.upload-ck');
 

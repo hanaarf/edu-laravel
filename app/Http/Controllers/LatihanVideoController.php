@@ -18,10 +18,17 @@ class LatihanVideoController extends Controller
         return view('dashboard.latVideo.index', compact('soals'));
     }
 
+    // Tampilkan daftar materi berdasarkan kelas
     public function filter($kelas)
     {
         $materiVideos = MateriVideo::where('kelas_id', $kelas)->get();
-        $soals = LatihanVideo::whereIn('materi_video_id', $materiVideos->pluck('id'))->get();
+        return view('dashboard.latVideo.materi_list', compact('materiVideos', 'kelas'));
+    }
+
+    // Tampilkan soal berdasarkan materi yang dipilih
+    public function soalByMateri($materi_id)
+    {
+        $soals = LatihanVideo::where('materi_video_id', $materi_id)->get();
         return view('dashboard.latVideo.index', compact('soals'));
     }
 
