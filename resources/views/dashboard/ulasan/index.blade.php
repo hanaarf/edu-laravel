@@ -59,11 +59,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                        <a href="{{ route('data_guru.create')}}" class="btn btn-rounded btn-outline-primary">+ data
-                            guru</a>
-                        <h4 class="card-title">Data guru</h4>
-                    </div>
+                   
                     <div class="card-body">
                         {{-- @if (Session::get('Sukses'))
 
@@ -126,7 +122,7 @@
                                                     class="btn btn-danger shadow btn-xs sharp">
                                                     <i class="fa fa-trash"></i>
                                                 </a>
-                                                <form id="delete-form-{{ $row->id }}" action="{{ route('data_guru.destroy', $row->id) }}" method="POST" style="display: none;">
+                                                <form id="delete-form-{{ $row->id }}" action="{{ route('data_ulasan.destroy', $row->id) }}" method="POST" style="display: none;">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>                                                
@@ -167,8 +163,7 @@
             confirmButtonText: 'iyakk!'
         }).then((result) => {
             if (result.isConfirmed) {
-                // Lakukan aksi penghapusan, misalnya dengan mengirimkan form
-                document.getElementById(delete-form-${id}).submit();
+                document.getElementById(`delete-form-${id}`).submit();
             }
         });
     }
