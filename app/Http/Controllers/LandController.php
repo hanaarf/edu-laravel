@@ -8,15 +8,12 @@ use Illuminate\Http\Request;
 class LandController extends Controller
 {
     public function indexL(){
-        $ulasan = Ulasan::with('user')
-            ->whereHas('user', function($q) {
-                $q->whereIn('name', ['hana aulia', 'maliha', 'intan']);
-            })
-            ->latest()
-            ->limit(5)
-            ->get();
-        return view('landingPage', compact('ulasan'));
-    }
+    $ulasan = Ulasan::with('user')
+        ->latest()
+        ->limit(4)
+        ->get();
+    return view('landingPage', compact('ulasan'));
+}
 
     public function index(){
         $user = Ulasan::all();
